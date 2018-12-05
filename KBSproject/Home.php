@@ -1,4 +1,11 @@
-<?php include 'header.php'; ?>
+<?php 
+include 'header.php'; 
+//include 'connect.php'; 
+function like_match($pattern, $subject){
+    $pattern = str_replace('%', '.*', preg_quote($pattern, '/'));
+    return (bool) preg_match("/^{$pattern}$/i", $subject);
+}
+?>
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -24,21 +31,71 @@
             </div>
         </div>
         <?php
-        $query = $connect->query("SELECT s.*, o.StockItemID, count(*) as populair
+        $sql = "SELECT s.*, o.StockItemID, count(*) as populair
                             from orderlines o JOIN stockitems s ON o.StockItemID = s.StockItemID
                             group by o.StockItemID
                             order by populair desc
-                            LIMIT 5;");
-        if($query->num_rows > 0){while($row = $query->fetch_assoc()){
-            ?>
+                            LIMIT 5;";
+        $product = dbSelectAll($sql);
+        $uniq = array();
+        while($row = $product->fetchAll(PDO::FETCH_ASSOC)){
+            for($k=0;$k<count($row);$k++){
+                    $name = explode(' ', $row[$k]['StockItemName']);
+                    $maat = explode(' ', $row[$k]['Size']);
+                    $array = array_diff($name, $maat);
+                    $i = 0;
+                    $j = count($array);
+                    $id = $row[$k]['StockItemID'];
+                    $deletedmaat[$id] = array_values(array_intersect($name, $maat));
+                    $l = 0;
+                    foreach ($array as $value) {
+                        if(like_match('(%)', $value) || like_match('(L%', $value) || like_match('%n)', $value)){
+                            $deletedkleur[$id][$l] = $value;
+                            $l++;
+                            $j--;
+                        }else{
+                            $newarray[$i] = $value;
+                            $i++;
+                        }
+                    }
+                    $newarray2 = array_splice($newarray, 0, $j);
+                    $newstring = implode(' ', $newarray2);
+                    $row[$k]['StockItemName'] = $newstring;
+                    if(!in_array($row[$k]['StockItemName'], $uniq)){
+                        $uniq[] = $row[$k]['StockItemName'];
+                        
+                        if(file_exists("fotos/".$row[$k]['StockItemID'].".jpg")){
+                            $foto = "fotos/".$row[$k]['StockItemID'].".jpg";
+                        }elseif(file_exists("fotos/".$row[$k]['StockItemID'].".png")){
+                            $foto = "fotos/".$row[$k]['StockItemID'].".png";
+                        }elseif(file_exists("fotos/".$row[$k]['StockItemID'].".jpeg")){
+                            $foto = "fotos/".$row[$k]['StockItemID'].".jpeg";
+                        }else{
+                            $foto = "https://via.placeholder.com/277x180";
+                        }
+        ?>
         <div class="carousel-item">
-            <img class="card-img-top" src="https://via.placeholder.com/277x180" alt="Card image cap" width="100%" height="500">
+            <img class="card-img-top" src="<?php print($foto); ?>" alt="Card image cap" width="50%" height="500">
             <div class="carousel-caption">
-                <h3><?php echo $row["StockItemName"]; ?></h3>
-                <p>Prijs: <?php echo '€'.$row["RecommendedRetailPrice"].' euro'; ?></p>
+                <h3><?php echo $row[$k]["StockItemName"]; ?></h3>
+                <p>Prijs: <?php echo '€'.$row[$k]["RecommendedRetailPrice"].' euro'; ?></p>
             </div>
         </div>
-        <?php }}?>
+        <?php           
+        if(!empty($deletedmaat[$id])){
+                        $maatje = implode(' ', $deletedmaat[$id]);
+//                        print(" ".$maatje);
+                    }
+                    $replace = array("(", ")");
+                    if(!empty($deletedkleur[$id])){
+                        $kleur = str_replace($replace, '', implode(' ', $deletedkleur[$id]));
+//                        print(" ".$kleur);
+                    }
+                    
+                }
+            }
+        }
+             ?>
     </div>
     <a class="carousel-control-prev" href="#demo" data-slide="prev">
         <span class="carousel-control-prev-icon"></span>
@@ -52,22 +109,75 @@
 
     <div class="row">
         <?php
-        $query = $connect->query("SELECT s.*, o.StockItemID, count(*) as populair
+        $sql = "SELECT s.*, o.StockItemID, count(*) as populair
                             from orderlines o JOIN stockitems s ON o.StockItemID = s.StockItemID
                             group by o.StockItemID
                             order by populair desc
-                            LIMIT 5;");
-        if($query->num_rows > 0){while($row = $query->fetch_assoc()){
-            ?>
+                            LIMIT 5;";
+        $product = dbSelectAll($sql);
+        $uniq = array();
+        while($row = $product->fetchAll(PDO::FETCH_ASSOC)){
+            for($k=0;$k<count($row);$k++){
+                    $name = explode(' ', $row[$k]['StockItemName']);
+                    $maat = explode(' ', $row[$k]['Size']);
+                    $array = array_diff($name, $maat);
+                    $i = 0;
+                    $j = count($array);
+                    $id = $row[$k]['StockItemID'];
+                    $deletedmaat[$id] = array_values(array_intersect($name, $maat));
+                    $l = 0;
+                    foreach ($array as $value) {
+                        if(like_match('(%)', $value) || like_match('(L%', $value) || like_match('%n)', $value)){
+                            $deletedkleur[$id][$l] = $value;
+                            $l++;
+                            $j--;
+                        }else{
+                            $newarray[$i] = $value;
+                            $i++;
+                        }
+                    }
+                    $newarray2 = array_splice($newarray, 0, $j);
+                    $newstring = implode(' ', $newarray2);
+                    $row[$k]['StockItemName'] = $newstring;
+                    if(!in_array($row[$k]['StockItemName'], $uniq)){
+                        $uniq[] = $row[$k]['StockItemName'];
+                        
+                        if(file_exists("fotos/".$row[$k]['StockItemID'].".jpg")){
+                            $foto = "fotos/".$row[$k]['StockItemID'].".jpg";
+                        }elseif(file_exists("fotos/".$row[$k]['StockItemID'].".png")){
+                            $foto = "fotos/".$row[$k]['StockItemID'].".png";
+                        }elseif(file_exists("fotos/".$row[$k]['StockItemID'].".jpeg")){
+                            $foto = "fotos/".$row[$k]['StockItemID'].".jpeg";
+                        }else{
+                            $foto = "https://via.placeholder.com/277x180";
+                        }
+        ?>
         <div class="col-lg-4 center">
-            <img class="rounded-circle" src="https://via.placeholder.com/277x180" alt="Card image cap">
-            <h2><?php echo $row["StockItemName"]; ?></h2>
-            <p><?php echo $row["MarketingComments"];?></p>
-            <p> <a class="btn btn-success button-style" href="cartAction.php?action=addToCart&StockItemID=<?php echo $row["StockItemID"]; ?>">In winkelmand</a></p>
-            <p><a class="btn btn-info button-style" href="detail.php?action=&StockItemID=<?php echo $row["StockItemID"]; ?>">Details</a></p>
+            <img class="rounded-circle" src="<?php print($foto); ?>" alt="Card image cap" width="100%" height="300">
+            <h2><?php echo $row[$k]["StockItemName"]; ?></h2>
+            <p><?php echo $row[$k]["MarketingComments"];?></p>
+            <p> <a class="btn btn-success button-style" href="cartAction.php?action=addToCart&StockItemID=<?php echo $row[$k]["StockItemID"]; ?>">In winkelmand</a></p>
+            <p><a class="btn btn-info button-style" href="detail.php?action=&StockItemID=<?php echo $row[$k]["StockItemID"]; ?>">Details</a></p>
         </div>
-        <?php }}?>
+        <?php           
+        if(!empty($deletedmaat[$id])){
+                        $maatje = implode(' ', $deletedmaat[$id]);
+//                        print(" ".$maatje);
+                    }
+                    $replace = array("(", ")");
+                    if(!empty($deletedkleur[$id])){
+                        $kleur = str_replace($replace, '', implode(' ', $deletedkleur[$id]));
+//                        print(" ".$kleur);
+                    }
+                    
+                }
+            }
+        }
+             ?>
     </div>
 </div>
     <br>
 <?php include 'footer.php' ?>
+</body>
+</html>
+
