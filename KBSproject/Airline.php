@@ -1,5 +1,5 @@
 <?php include 'header.php'; ?>
-
+<div class="main">
     <div class="container">
         <div id="products" class="row">
         <?php
@@ -65,6 +65,7 @@
         }    
         ?>
         </div>
+    </div>
     </div>
     <?php
     include 'footer.php';
