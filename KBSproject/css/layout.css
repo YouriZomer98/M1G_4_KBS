@@ -1,0 +1,57 @@
+/* Footer style */
+.footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 60px; /* Set the fixed height of the footer here */
+    line-height: 60px; /* Vertically center the text there */
+    background-color: #343a40;
+    font-size: 17px;
+    color:white;
+}
+
+/* registration/login form style */
+.box1
+{
+    padding-right: 2em;
+    max-width: 49% !important;
+
+}
+
+.box2
+{
+    padding-left: 2em;
+}
+
+.line{
+    border: 1px solid #c3c1bc;
+}
+.error
+{
+    font-family: sans-serif;
+    color: #E70000;
+    font-size: 16px;
+    line-height: 2px;
+}
+
+/* contact pagina */
+.form
+{
+    margin-left: 30%;
+    margin-right:30%;
+    width: 40%;
+}
+/* bedankt pagina */
+.bedankt
+{
+    text-align: center;
+    padding-top: 250px;
+    font-size: 30px;
+    line-height: 20px;
+    font-family: sans-serif;
+}
+/* home pagina */
+.center
+{
+    text-align: center;
+}
