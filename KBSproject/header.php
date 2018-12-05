@@ -76,6 +76,9 @@
                         <a class="dropdown-item" href="Pack.php">Packaging Materials</a>
                     </div>
                 </li>
+                 <li class="nav-item">
+                    <a class="nav-link text-white" href="contact.php">CONTACT</a>
+                </li>
             </ul>
             <form class="form-inline my-2 my-lg-0" name="search" method="get" action="searchresults.php">
                 <input class="form-control mr-sm-2" name="search" value="search"/>
