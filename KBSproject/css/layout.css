@@ -41,6 +41,17 @@
     margin-right:30%;
     width: 40%;
 }
+.errors
+{
+    font-family: sans-serif;
+    color: #E70000;
+    font-size: 16px;
+    line-height: 19px;
+}
+.contact-block
+{
+    padding-top: 100px;
+}
 /* bedankt pagina */
 .bedankt
 {
