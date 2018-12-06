@@ -95,19 +95,6 @@ if (isset($_POST['name'], $_POST['email'], $_POST['onderwerp'], $_POST['message'
 
 ?>
 <link rel="stylesheet" type="text/css" href="css/layout.css">
-<style>
-    .errors
-    {
-        font-family: sans-serif;
-        color: #E70000;
-        font-size: 16px;
-        line-height: 19px;
-    }
-    .contact-block
-    {
-        padding-top: 100px;
-    }
-</style>
 <div class="col-md-12 contact-block">
     <div class="container">
         <section>
@@ -128,10 +115,10 @@ if (isset($_POST['name'], $_POST['email'], $_POST['onderwerp'], $_POST['message'
                             <?php endif; ?>
                             <div class="row ">
                                 <div class="col-md-6">
-                                    <input id="name" type="text" name="name" class="form-control" placeholder="Uw naam" value="<?php echo htmlspecialchars($contact['name']);?>">
+                                    <input id="name" type="text" name="name" class="form-control" placeholder="Naam" value="<?php echo htmlspecialchars($contact['name']);?>">
                                 </div>
                                 <div class="col-md-6 mb-2">
-                                    <input id="email" type="text" name="email" class="form-control" placeholder="Email Adres" value="<?php echo htmlspecialchars($contact['email']);?>">
+                                    <input id="email" type="text" name="email" class="form-control" placeholder="E-mail Adres" value="<?php echo htmlspecialchars($contact['email']);?>">
                                 </div>
                                 <div class="col-md-12 mb-2">
                                     <input id="onderwerp" class="form-control" name="onderwerp" placeholder="Onderwerp" value="<?php echo htmlspecialchars($contact['onderwerp']);?>">
@@ -140,7 +127,7 @@ if (isset($_POST['name'], $_POST['email'], $_POST['onderwerp'], $_POST['message'
                                     <textarea id="message" class="form-control" name="message" placeholder="Bericht" cols="40" rows="8"><?php echo htmlspecialchars($contact['message']);?></textarea>
                                 </div>
                                 <div class="input-group-btn col-md-12 text-center">
-                                    <button href="" type="submit" name="submit" class="btn btn-primary btn-form btn-t1 color-btn">Berich versturen</button>
+                                    <button href="" type="submit" name="submit" class="btn btn-primary btn-form btn-t1 color-btn">Verzenden</button>
                                 </div>
                             </div>
                         </fieldset>
