@@ -11,9 +11,6 @@
         padding-top: 45px;
         margin-left: 20px;
         margin-top: 45px;
-        margin-bottom: 45px;
-        border-right: solid #343a40 1px;
-        /*border-right: 1px black solid;*/
     }
     .sidenav a {
         padding: 6px 8px 6px 16px;
