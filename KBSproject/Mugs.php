@@ -45,6 +45,8 @@ include 'sidebarMugs.php';?>
                         $deletedkleur[$id][$l] = $value;
                         $l++;
                         $j--;
+                    }elseif($value == ''){
+                        $j--;
                     }else{
                         $newarray[$i] = $value;
                         $i++;
