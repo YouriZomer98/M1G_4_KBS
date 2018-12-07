@@ -1,10 +1,7 @@
 <?php 
 include 'header.php'; 
 //include 'connect.php'; 
-function like_match($pattern, $subject){
-    $pattern = str_replace('%', '.*', preg_quote($pattern, '/'));
-    return (bool) preg_match("/^{$pattern}$/i", $subject);
-}
+
 ?>
 <div class="container">
     <div id="products" class="row">
@@ -53,7 +50,7 @@ function like_match($pattern, $subject){
                     <img class="card-img-top" src="<?php print($foto); ?>" alt="Card image cap">
                     <div class="card-body">
                         <ul class="list-group list-group-flush text-center">
-                            <h6 class="card-title list-group-item"><?php echo $row[$k]['StockItemID'].$row[$k]["StockItemName"]; ?></h6>
+                            <h6 class="card-title list-group-item"><?php echo $row[$k]["StockItemName"]; ?></h6>
                             <h7 class="list-group-item"> Prijs: <?php echo '€'.$row[$k]["RecommendedRetailPrice"].' euro'; ?></h7><hr>
                             <a class="btn btn-success button-style" href="cartAction.php?action=addToCart&StockItemID=<?php echo $row[$k]["StockItemID"]; ?>">In winkelmand</a>
                             <a class="btn btn-info button-style" href="detail.php?action=&StockItemID=<?php echo $row[$k]["StockItemID"]; ?>">Details</a>

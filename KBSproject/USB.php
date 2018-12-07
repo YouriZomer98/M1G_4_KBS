@@ -1,12 +1,35 @@
-<?php include 'header.php';?>
+<?php include 'header.php';
+include 'sidebarUSB.php';?>
 
 
 <div class="main">
 <div class="container">
     <div id="products" class="row">
         <?php
-        $sql = "SELECT * FROM (stockitems i JOIN stockitemstockgroups ig ON i.StockItemID = ig.StockItemID)JOIN stockgroups g ON ig.StockGroupID = g.StockGroupID WHERE StockGroupName='USB Novelties' ";
-        $product = dbSelectAll($sql);
+        if(isset($_GET['submit'])){
+            $sql = "SELECT * FROM stockitems WHERE StockItemID IN (SELECT StockItemID FROM stockitemstockgroups WHERE StockGroupID = 7)";
+            $allesarray = dbSelectAll($sql);
+            $alles = $allesarray->fetchAll(PDO::FETCH_COLUMN);
+            if(isset($_GET['kleur']) && !empty($_GET['kleur'])){
+                $kleuren = implode("|", $_GET['kleur']);
+                $sql = "SELECT * FROM stockitems WHERE StockItemName RLIKE '$kleuren'";
+                $kleurarray = dbSelectAll($sql);
+                $kleur = $kleurarray->fetchAll(PDO::FETCH_COLUMN);
+            }else{
+                $sql = "SELECT * FROM stockitems";
+                $kleurarray = dbSelectAll($sql);
+                $kleur = $kleurarray->fetchAll(PDO::FETCH_COLUMN);
+            }
+            if(filter_has_var(INPUT_GET, 'orderby') && filter_input(INPUT_GET, 'orderby', FILTER_SANITIZE_STRING)){
+                $orderby = $_GET['orderby'];
+            }else{
+                $orderby = 'StockItemID';
+            }
+            $samen = array_intersect($alles, $kleur);
+            $productID = implode("', '", $samen);
+            $sql = "SELECT * FROM stockitems WHERE StockItemID IN ('$productID') ORDER BY $orderby";
+            $product = dbSelectAll($sql);
+        }
         $uniq = array();
         $k = 0;
         while($row = $product->fetchAll(PDO::FETCH_ASSOC)){

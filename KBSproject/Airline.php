@@ -1,10 +1,22 @@
-<?php include 'header.php'; ?>
+<?php include 'header.php'; 
+include 'sidebarAirline.php';?>
 <div class="main">
     <div class="container">
         <div id="products" class="row">
         <?php
-        $sql = "SELECT * FROM (stockitems i JOIN stockitemstockgroups ig ON i.StockItemID = ig.StockItemID)JOIN stockgroups g ON ig.StockGroupID = g.StockGroupID WHERE StockGroupName='Airline Novelties' ";
-        $product = dbSelectAll($sql);
+        if(isset($_GET['submit'])){
+            if(filter_has_var(INPUT_GET, 'orderby') && filter_input(INPUT_GET, 'orderby', FILTER_SANITIZE_STRING)){
+                $orderby = $_GET['orderby'];
+            }else{
+                $orderby = 'StockItemID';
+            }
+            $sql = "SELECT * FROM stockitems WHERE StockItemID IN (SELECT StockItemID FROM stockitemstockgroups WHERE StockGroupID = 5)";
+            $allesarray = dbSelectAll($sql);
+            $alles = $allesarray->fetchAll(PDO::FETCH_COLUMN);
+            $productID = implode("', '", $alles);
+            $sql = "SELECT * FROM stockitems WHERE StockItemID IN ('$productID') ORDER BY $orderby";
+            $product = dbSelectAll($sql);
+        }
         $uniq = array();
         $k = 0;
         while($row = $product->fetchAll(PDO::FETCH_ASSOC)){

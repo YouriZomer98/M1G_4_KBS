@@ -64,24 +64,21 @@
                         CATEGORIE
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="Items.php">Novelty Items</a>
-                        <a class="dropdown-item" href="Clothing.php">Clothing</a>
-                        <a class="dropdown-item" href="Mugs.php">Mugs</a>
-                        <a class="dropdown-item" href="T.php">T-shirts</a>
-                        <a class="dropdown-item" href="Airline.php">Airline Novelties</a>
-                        <a class="dropdown-item" href="Computing.php">Computing Novelties</a>
-                        <a class="dropdown-item" href="USB.php">USB Novelties</a>
-                        <a class="dropdown-item" href="Furry.php">Furry Footwear</a>
-                        <a class="dropdown-item" href="Toys.php">Toys</a>
-                        <a class="dropdown-item" href="Pack.php">Packaging Materials</a>
+                        <a class="dropdown-item" href="Items.php?submit=">Novelty Items</a>
+                        <a class="dropdown-item" href="Clothing.php?submit=">Clothing</a>
+                        <a class="dropdown-item" href="Mugs.php?submit=">Mugs</a>
+                        <a class="dropdown-item" href="T.php?submit=">T-shirts</a>
+                        <a class="dropdown-item" href="Airline.php?submit=">Airline Novelties</a>
+                        <a class="dropdown-item" href="Computing.php?submit=">Computing Novelties</a>
+                        <a class="dropdown-item" href="USB.php?submit=">USB Novelties</a>
+                        <a class="dropdown-item" href="Furry.php?submit=">Furry Footwear</a>
+                        <a class="dropdown-item" href="Toys.php?submit=">Toys</a>
+                        <a class="dropdown-item" href="Pack.php?submit=">Packaging Materials</a>
                     </div>
-                </li>
-                 <li class="nav-item">
-                    <a class="nav-link text-white" href="contact.php">CONTACT</a>
                 </li>
             </ul>
             <form class="form-inline my-2 my-lg-0" name="search" method="get" action="searchresults.php">
-                <input class="form-control mr-sm-2" name="search" value="search"/>
+                <input class="form-control mr-sm-2" name="search" placeholder="search"/>
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit" action="searchresults.php" value="search">Search</button>
             </form>
         </div>
