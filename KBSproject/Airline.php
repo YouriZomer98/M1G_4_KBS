@@ -16,7 +16,8 @@ include 'sidebarAirline.php';?>
             $productID = implode("', '", $alles);
             $sql = "SELECT * FROM stockitems WHERE StockItemID IN ('$productID') ORDER BY $orderby";
             $product = dbSelectAll($sql);
-        }
+        }else{$sql = "SELECT * FROM stockitems WHERE StockItemID IN (SELECT StockItemID FROM stockitemstockgroups WHERE StockGroupID = 5)";
+        $product = dbSelectAll($sql);}
         $uniq = array();
         $k = 0;
         while($row = $product->fetchAll(PDO::FETCH_ASSOC)){
@@ -84,8 +85,3 @@ include 'sidebarAirline.php';?>
     <?php
     include 'footer.php';
     ?>
-    </body>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-</html>

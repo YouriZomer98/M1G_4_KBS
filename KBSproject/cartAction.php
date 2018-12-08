@@ -1,15 +1,16 @@
 <?php
-// initialiseer winkelwagenklasse
 include 'Cart.php';
 $cart = new Cart;
 
-// include database
 include 'connect.php';
 if(isset($_REQUEST['action']) && !empty($_REQUEST['action'])){
     if($_REQUEST['action'] == 'addToCart' && !empty($_REQUEST['StockItemID'])){
         $productID = $_REQUEST['StockItemID'];
         $query = $connect->query("SELECT * FROM stockitems WHERE StockItemID = ".$productID);
         $row = $query->fetch_assoc();
+//        $sql="SELECT * FROM stockitems WHERE StockItemID = ".$productID;
+//        $product = dbSelectAll($sql);
+//        $row = $product->fetchAll(PDO::FETCH_ASSOC);
         $itemData = array(
             'StockItemID' => $row['StockItemID'],
             'name' => $row['StockItemName'],
@@ -19,7 +20,7 @@ if(isset($_REQUEST['action']) && !empty($_REQUEST['action'])){
         );
         
         $insertItem = $cart->insert($itemData);
-        $redirectLoc = $insertItem?'index.php':'index.php';
+        $redirectLoc = $insertItem?'index3.php':'index3.php';
         header("Location: ".$redirectLoc);
     }elseif($_REQUEST['action'] == 'updateCartItem' && !empty($_REQUEST['StockItemID'])){
         $itemData = array(

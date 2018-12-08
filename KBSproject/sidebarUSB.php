@@ -44,8 +44,6 @@
         <h3>Kleur</h3>
         <input type="checkbox" name="kleur[]" value="Green"> <span style="color: green;">&#11044;</span> Groen <br>
         <input type="checkbox" name="kleur[]" value="Gray"> <span style="color: grey;">&#11044;</span> Grijs <br><br>
-        
-        <!--<p><input class="btn btn-info" type="submit" name="submit" value="Toepassen"></p>-->
     </form>
     <?php
     

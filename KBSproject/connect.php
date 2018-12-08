@@ -1,6 +1,6 @@
 <?php
 
-//$connect = mysqli_connect("localhost", "root", "", "wideworldimporters")or die("Couldn't connect to server or database");
+$connect = mysqli_connect("localhost", "root", "", "wideworldimporters")or die("Couldn't connect to server or database");
 
 function dbGetConfig(){
    return array(

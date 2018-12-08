@@ -35,7 +35,7 @@ $cart = new Cart;?>
         <tr>
             <td><?php echo $item["name"]; ?></td>
             <td><?php echo '€'.$item["price"].' EURO'; ?></td>
-            <td><input type="number" class="form-control text-center" value="<?php echo $item["qty"]; ?>" onchange="updateCartItem(this, '<?php echo $item["rowid"]; ?>')"></td>
+           <td><input type="number" class="form-control text-center" value="<?php echo $item["qty"]; ?>" onchange="updateCartItem(this, '<?php echo $item["rowid"]; ?>')"></td>
             <td><?php echo '€'.$item["subtotal"].' EURO'; ?></td>
             <td>
                 <a href="cartAction.php?action=removeCartItem&id=<?php echo $item["rowid"]; ?>" class="btn btn-danger" onclick="return confirm('Weet je het zeker?')"><i class="glyphicon glyphicon-trash"></i></a>
@@ -47,7 +47,7 @@ $cart = new Cart;?>
     </tbody>
     <tfoot>
         <tr>
-            <td><a href="index.php" class="btn btn-success btn-block"><i class="glyphicon glyphicon-menu-left"></i>Terug naar winkel</a></td>
+            <td><a href="index3.php" class="btn btn-success btn-block"><i class="glyphicon glyphicon-menu-left"></i>Terug naar winkel</a></td>
             <td colspan="2"></td>
             <?php if($cart->total_items() > 0){ ?>
             <td class="text-center"><strong>Total <?php echo '€'.$cart->total().' EURO'; ?></strong></td>

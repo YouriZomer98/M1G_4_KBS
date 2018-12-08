@@ -1,4 +1,8 @@
-<?php include 'connect.php'; ?>
+<?php include 'connect.php'; 
+function like_match($pattern, $subject){
+    $pattern = str_replace('%', '.*', preg_quote($pattern, '/'));
+    return (bool) preg_match("/^{$pattern}$/i", $subject);
+}?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -34,7 +38,39 @@
             .item{
                 padding: 20px 0;
             }
+                    .box1
+        {
+            padding-right: 2em;
+            max-width: 49% !important;
 
+        }
+        .box2
+        {
+            padding-left: 2em;
+        }
+
+        .line{
+            border: 1px solid #c3c1bc;
+        }
+            .error
+            {
+                font-family: sans-serif;
+                color: #E70000;
+                font-size: 16px;
+                line-height: 2px;
+            }
+            .popup {
+                margin: 75px auto;
+                padding: 20px;
+                background: #fff;
+                border: 1px solid #666;
+                width: 300px;
+                box-shadow: 0 0 50px rgba(0,0,0,0.5);
+                position: relative;
+          .light & {
+                border-color: #aaa;
+                box-shadow: 0 2px 10px rgba(0,0,0,0.25);
+          }
         </style>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     </head>
@@ -58,6 +94,9 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link text-white" href="viewCart.php">WINKELWAGEN</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="contact.php">CONTACT</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

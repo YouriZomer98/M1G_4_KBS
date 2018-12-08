@@ -1,48 +1,64 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-dark fixed-top">
-    <a class="navbar-brand" href="index.php"><img src="WWI.png" width="160" height="48" class="d-inline-block align-top" alt=""></a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
+   <nav class="navbar navbar-expand-lg navbar-light bg-dark fixed-top">
+        <a class="navbar-brand" href="index3.php"><img src="WWI.png" width="160" height="48" class="d-inline-block align-top" alt=""></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link text-white" href="home.php">HOME <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-white" href="index.php">PRODUCTEN</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-white" href="../loginregister.php">INLOGGEN</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-white" href="viewCart.php">WINKELWAGEN</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-white" href="contact.php">CONTACT</a>
-            </li>
-        </ul>
-        <form class="form-inline my-2 my-lg-0" name="search" method="get" action="searchresults.php">
-            <input class="form-control mr-sm-2" name="search" placeholder="zoek" >
-            <button class="btn btn-outline-primary my-2 my-sm-0" type="submit" action="searchresults.php" value="search">Zoeken</button>
-        </form>
-    </div>
-</nav>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link text-white" href="home.php">HOME <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="index3.php">PRODUCTEN</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="loginregister.php">INLOGGEN</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="viewCart.php">WINKELWAGEN</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="contact.php">CONTACT</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        CATEGORIE
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="Items.php?submit=">Novelty Items</a>
+                        <a class="dropdown-item" href="Clothing.php?submit=">Clothing</a>
+                        <a class="dropdown-item" href="Mugs.php?submit=">Mugs</a>
+                        <a class="dropdown-item" href="T.php?submit=">T-shirts</a>
+                        <a class="dropdown-item" href="Airline.php?submit=">Airline Novelties</a>
+                        <a class="dropdown-item" href="Computing.php?submit=">Computing Novelties</a>
+                        <a class="dropdown-item" href="USB.php?submit=">USB Novelties</a>
+                        <a class="dropdown-item" href="Furry.php?submit=">Furry Footwear</a>
+                        <a class="dropdown-item" href="Toys.php?submit=">Toys</a>
+                        <a class="dropdown-item" href="Pack.php?submit=">Packaging Materials</a>
+                    </div>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0" name="search" method="get" action="searchresults.php">
+                <input class="form-control mr-sm-2" name="search" placeholder="search"/>
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit" action="searchresults.php" value="search">Search</button>
+            </form>
+        </div>
+    </nav>
+
 
 
 <?php
 $valid = true;
 $errors = array();
-
 $contact = array(
     'name' => null,
     'email' => null,
     'onderwerp' => null,
     'message' => null
 );
-
 // Check if the form has been posted
 if (isset($_POST['name'], $_POST['email'], $_POST['onderwerp'], $_POST['message'])) {
     $contact = filter_input_array(INPUT_POST, array(
@@ -92,7 +108,6 @@ if (isset($_POST['name'], $_POST['email'], $_POST['onderwerp'], $_POST['message'
         exit;
     }
 }
-
 ?>
 <link rel="stylesheet" type="text/css" href="css/layout.css">
 <div class="col-md-12 contact-block">
@@ -140,11 +155,6 @@ if (isset($_POST['name'], $_POST['email'], $_POST['onderwerp'], $_POST['message'
 
 
 <?php include 'footer.php'; ?>
-
-
-
-
-
 
 
 

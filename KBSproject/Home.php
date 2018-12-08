@@ -1,17 +1,8 @@
 <?php 
 include 'header.php'; 
 //include 'connect.php'; 
-function like_match($pattern, $subject){
-    $pattern = str_replace('%', '.*', preg_quote($pattern, '/'));
-    return (bool) preg_match("/^{$pattern}$/i", $subject);
-}
-?>
 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
-<link rel="stylesheet" href="css/layout.css">
+?>
 
 <div id="demo" class="carousel slide" data-ride="carousel">
     <ul class="carousel-indicators">
@@ -75,7 +66,7 @@ function like_match($pattern, $subject){
                         }
         ?>
         <div class="carousel-item">
-            <img class="card-img-top" src="<?php print($foto); ?>" alt="Card image cap" width="50%" height="500">
+            <img src="<?php print($foto); ?>" alt="Card image cap" width="100%" height="500">
             <div class="carousel-caption">
                 <h3><?php echo $row[$k]["StockItemName"]; ?></h3>
                 <p>Prijs: <?php echo '€'.$row[$k]["RecommendedRetailPrice"].' euro'; ?></p>
@@ -108,6 +99,7 @@ function like_match($pattern, $subject){
 <div class="container marketing">
 
     <div class="row">
+        <h1>Dit zijn de 5 populairste producten bij WWI</h1>
         <?php
         $sql = "SELECT s.*, o.StockItemID, count(*) as populair
                             from orderlines o JOIN stockitems s ON o.StockItemID = s.StockItemID
@@ -178,6 +170,4 @@ function like_match($pattern, $subject){
 </div>
     <br>
 <?php include 'footer.php' ?>
-</body>
-</html>
 

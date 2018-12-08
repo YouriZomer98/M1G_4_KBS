@@ -11,7 +11,6 @@ if (isset($_POST['register_btn'])){
     $password2 = $_POST["password2"];
 
 
-    //Errors
     if (empty($name)) {
         array_push($errors, "Naam is verplicht");
     }
@@ -24,15 +23,14 @@ if (isset($_POST['register_btn'])){
     if ($password != $password2) {
         array_push($errors, "De wachtwoorden komen niet overeen");
     }
-    if (strlen($password) > 10 || strlen($password2 > 10 )){
-        array_push($errors, "Je wachtwoord is langer dan 10 karakters");
+    if (strlen($password) > 20 || strlen($password2 > 20 )){
+        array_push($errors, "Je wachtwoord is langer dan 20 karakters");
     }
     if (empty($address)){
         array_push($errors, "Adres is verplicht");
     }    
-    //Registreer gebruiker bij 0 errors:
     if (count($errors)==0){
-        $password = md5($password); //Hash <--
+        $password = md5($password);
         $password2 = md5($password2);
 
     
