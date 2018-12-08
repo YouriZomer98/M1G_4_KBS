@@ -87,23 +87,23 @@ if (isset($_POST['name'], $_POST['email'], $_POST['onderwerp'], $_POST['message'
         $errors['message'] = "- Bericht is verplicht!";
     }
     if ($valid) {
-        // The email address the email will be sent to
-        $to = "info@blackeagle75.nl";
-        // The email subject
+
+       $to = "info@blackeagle75.nl";
+       
         $subject = "Contact formuliergegevens";
-        // Set the from and reply-to address for the email
+       
         $headers = "From: " . $contact['email'] . "\r\n"
             . "Reply-To: " . $contact['email'] . "\r\n"
             . "X-Mailer: PHP/" . phpversion();
-        // Build the body of the email
+       
         $mailbody = "Het contactformulier is ingevuld.\n\n"
             . "Naam: " . $contact['name'] . "\n"
             . "Email: " . $contact['email'] . "\n"
             . "Onderwerp: " . $contact['onderwerp'] . "\n"
             . "Bericht: " . $contact['message'];
-        // Send the email
+       
         mail($to, $subject, $mailbody, $headers);
-        // Go to the thank you page
+       
         header("location: bedanktpagina.php");
         exit;
     }
