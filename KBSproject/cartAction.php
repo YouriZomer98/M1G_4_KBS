@@ -8,9 +8,6 @@ if(isset($_REQUEST['action']) && !empty($_REQUEST['action'])){
         $productID = $_REQUEST['StockItemID'];
         $query = $connect->query("SELECT * FROM stockitems WHERE StockItemID = ".$productID);
         $row = $query->fetch_assoc();
-//        $sql="SELECT * FROM stockitems WHERE StockItemID = ".$productID;
-//        $product = dbSelectAll($sql);
-//        $row = $product->fetchAll(PDO::FETCH_ASSOC);
         $itemData = array(
             'StockItemID' => $row['StockItemID'],
             'name' => $row['StockItemName'],
@@ -37,12 +34,6 @@ if(isset($_REQUEST['action']) && !empty($_REQUEST['action'])){
         if($insertOrder){
             $orderID = $db->insert_id;
             $sql = '';
-            // krijg winkelwagenitems
-            $cartItems = $cart->contents();
-            foreach($cartItems as $item){
-                $sql .= "INSERT INTO order_items (order_id, product_id, quantity) VALUES ('".$orderID."', '".$item['StockItemID']."', '".$item['qty']."');";
-            }
-            
             if($insertOrderItems){
                 $cart->destroy();
             }else{
