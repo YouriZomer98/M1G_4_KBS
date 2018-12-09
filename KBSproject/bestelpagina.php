@@ -130,27 +130,26 @@ $cart = new Cart;?>
             <td colspan="0"></td>
             <?php if($cart->total_items() > 0){ ?>
             <td class="text-right"><strong>Totaal <?php echo '€'.$cart->total(); ?></strong></td> 
-            <td><a href="https://www.iDeal.nl" class="btn btn-success btn-block">afronden <i class="glyphicon glyphicon-menu-right"></i></a></td>
+            <td><a href="https://www.iDeal.nl" class="btn btn-success btn-block">Afronden <i class="glyphicon glyphicon-menu-right"></i></a></td>
             <?php } ?>
         </tr>
 		
 		<?php
-        $query = $connect->query("SELECT * FROM users WHERE name='Jelle Mol'");
-		
-        if($query->num_rows > 0){
-			while($row = $query->fetch_assoc()){
-        ?>
-		<h6 class="card-title list-group-item"> Naam: <?php echo $row["name"]; ?></h6>
-		<h6 class="card-title list-group-item"> Contact: <?php echo $row["email"];?> <?php if ($row["number"]!=NULL){ ?>telefoon: <?php echo $row["number"]; }?></h6>
-		<h6 class="card-title list-group-item"> Adres: <?php echo $row["address"]; ?></h6>
-		<?php } }?>
-		
+        $email = $_SESSION['email'];?>
+        <h6>Verzendgegevens: <br><?php echo $email;?></h6><br>
+        <strong>Kies een bezorgoptie:</strong><br>
 		<?php 
 		$query2 = $connect->query("SELECT * FROM DeliveryMethods");
 		if($query2->num_rows > 0){
 			while ($row = $query2->fetch_assoc()){
-				?>
-				<h6 class="car-title list-group-item"> Bezorging: <?php echo $row["DeliveryMethodName"]; ?></h6>
+        ?>
+        <input type="radio" selected="selected" name="optie"> <?php echo $row['DeliveryMethodName'];?><br>
 			<?php } } ?>
     </tfoot>
-<?php include'footer.php';?>
+    </table>
+</div>
+</body>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+</html>
