@@ -59,8 +59,8 @@ $contact = array(
     'onderwerp' => null,
     'message' => null
 );
-// Check if the form has been posted
-if (isset($_POST['name'], $_POST['email'], $_POST['onderwerp'], $_POST['message'])) {
+
+   if (isset($_POST['name'], $_POST['email'], $_POST['onderwerp'], $_POST['message'])) {
     $contact = filter_input_array(INPUT_POST, array(
         'name'   => FILTER_SANITIZE_STRING,
         'email'   => FILTER_SANITIZE_STRING,
